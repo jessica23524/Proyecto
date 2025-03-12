@@ -15,7 +15,7 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UsersService usersService;
-
+    // Trae todos los usuarios
     @GetMapping
     public List<UsersEntity> getUsers() {
         return usersService.obtenerTodosLosUsuarios();
