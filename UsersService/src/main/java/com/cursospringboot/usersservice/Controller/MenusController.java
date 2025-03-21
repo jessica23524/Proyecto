@@ -23,7 +23,7 @@ public class MenusController {
         return menusService.getAllMenus();
     }
 
-    @GetMapping("/{categoryId}")
+    @GetMapping("/category/{categoryId}")
     public List<MenusEntity> getMenusByCategory(@PathVariable Long categoryId){
         return  menusService.getMenusByCategory(categoryId);
     }
