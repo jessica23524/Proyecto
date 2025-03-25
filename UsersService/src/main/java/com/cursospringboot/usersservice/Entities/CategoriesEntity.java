@@ -16,8 +16,8 @@ public class CategoriesEntity {
     @GeneratedValue( strategy = GenerationType.IDENTITY)
     @Column(name = "categoria_id")
     private Long categoriaId;
-
     private String nombre;
+    private String imagen;
 
     @OneToMany(mappedBy = "categoria", fetch = FetchType.LAZY)
     private List<MenusEntity> menus;
