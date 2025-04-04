@@ -1,8 +1,12 @@
 package com.cursospringboot.usersservice.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Getter
@@ -24,8 +28,13 @@ public class MenusEntity {
     private String imagen;
     private boolean disponible;
 
-
     @ManyToOne
     @JoinColumn( name = "categoria" ,referencedColumnName = "categoria_id", insertable=false , updatable=false)
     private CategoriesEntity categoria;
+
+    @OneToMany( mappedBy = "menu" , cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<DetailsOrder> details = new ArrayList<>();
 }
+
+

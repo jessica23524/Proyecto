@@ -1,9 +1,12 @@
 package com.cursospringboot.usersservice.Entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "usuarios")
@@ -41,6 +44,12 @@ public class UsersEntity {
 
     @Column(name = "direccion")
     private String direccion;
+
+
+    @OneToMany(mappedBy = "cliente"  , cascade = CascadeType.ALL , fetch = FetchType.LAZY )
+    @JsonManagedReference
+    private List<OrdersEntity> pedidos;
+
 }
 
 // Definir el enum TipoUsuario fuera de la entidad
