@@ -21,7 +21,7 @@ public class OrdersServices implements IOrdersServices {
 
     @Override
     public List<OrdersEntity> getOrderByIdPedido(long categoriaId) {
-        return ordersRepository.findByIdPedido(categoriaId);
+        return ordersRepository.findByOrderId(categoriaId);
     }
 
 }

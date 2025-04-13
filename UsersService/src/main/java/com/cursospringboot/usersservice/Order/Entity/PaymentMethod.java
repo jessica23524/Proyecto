@@ -1,6 +1,6 @@
 package com.cursospringboot.usersservice.Order.Entity;
 
-public enum MetodoPago {
+public enum PaymentMethod {
     EFECTIVO,
     TARJETA,
     PAYPAL

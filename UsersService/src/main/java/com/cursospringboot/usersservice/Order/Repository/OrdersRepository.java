@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface OrdersRepository extends JpaRepository<OrdersEntity, Long> {
 
-    List<OrdersEntity> findByIdPedido(long categoriaId);
+    List<OrdersEntity> findByOrderId(long categoriaId);
 }

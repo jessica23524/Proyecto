@@ -4,6 +4,7 @@ import com.cursospringboot.usersservice.User.Entity.UsersEntity;
 
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public interface IUsersServices {
@@ -15,7 +16,7 @@ public interface IUsersServices {
     /*  CREAR USUARIO */
     UsersEntity createUser(UsersEntity user);
     /* ACTUALIZAR USUARIO */
-    UsersEntity updateUser(UsersEntity user);
+    UsersEntity updateUser(Long userId , Map<String, Object> userUpdate);
 }
 
 

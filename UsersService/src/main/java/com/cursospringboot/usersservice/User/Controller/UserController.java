@@ -2,6 +2,8 @@ package com.cursospringboot.usersservice.User.Controller;
 
 import com.cursospringboot.usersservice.User.Entity.UsersEntity;
 
+
+import com.cursospringboot.usersservice.User.Repository.UserRepository;
 import com.cursospringboot.usersservice.User.Service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,9 +31,14 @@ public class UserController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<UsersEntity> createUser(@RequestBody UsersEntity user) {
+    public ResponseEntity<?> createUser(@RequestBody UsersEntity user) {
+        if (usersService.getUserByMail(user.getEmail()) != null) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("El correo ingresado ya éxiste");
+        }
+
         UsersEntity userCreate = usersService.createUser(user);
         return ResponseEntity.status(201).body(userCreate);
+
     }
 
     @PostMapping("/login")
@@ -47,5 +54,15 @@ public class UserController {
         }
         return ResponseEntity.ok(user);
     }
+
+    @PatchMapping("/update/{id}")
+    public ResponseEntity<UsersEntity> actualizarParcialmente(
+            @PathVariable Long id,
+            @RequestBody Map<String, Object> camposActualizados) {
+
+        UsersEntity usuarioActualizado = usersService.updateUser(id, camposActualizados);
+        return ResponseEntity.ok(usuarioActualizado);
+    }
+
 }
 //comentario

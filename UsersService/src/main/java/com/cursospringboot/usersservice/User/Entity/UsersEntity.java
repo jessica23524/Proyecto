@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 
@@ -36,23 +38,24 @@ public class UsersEntity {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "tipo_usuario", nullable = false)
-    private TipoUsuario tipoUsuario;// Usar el enum TipoUsuario
+    private UserType userType = UserType.CLIENTE;// Usar el enum TipoUsuario
 
     @Column(name = "fecha_registro", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP) // Especifica que es una fecha y hora
-    private Date fechaRegistro;
+    private LocalDateTime fechaRegistro;
 
     @PrePersist
-    protected void onCreate() {
-        this.fechaRegistro = new Date(); // Asigna la fecha actual automáticamente
+    public void prePersist() {
+        if (fechaRegistro == null) {
+            fechaRegistro = LocalDateTime.now();
+        }
     }
+
     @Column(name = "direccion")
-    private String direccion;
+    private String address;
 
-
-    @OneToMany(mappedBy = "cliente"  , cascade = CascadeType.ALL , fetch = FetchType.LAZY )
+    @OneToMany(mappedBy = "customer"  , cascade = CascadeType.ALL , fetch = FetchType.LAZY )
     @JsonManagedReference
-    private List<OrdersEntity> pedidos;
+    private List<OrdersEntity> orders;
 
 }
 

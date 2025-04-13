@@ -24,39 +24,39 @@ public class OrdersEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_pedido")
-    private Long idPedido;
+    private Long orderId;
 
     @Enumerated(EnumType.STRING)
-    private Estado estado;
+    private Status state;
 
     @Enumerated(EnumType.STRING)
-    private MetodoPago metodoPago;
+    private PaymentMethod paymentMethod;
 
     private Double total;
 
     @Column(name = "direccion_envio")
-    private String direccion;
+    private String address;
 
 
     @Temporal(TemporalType.TIMESTAMP)
-    private Date fecha;
+    private Date date;
     @PrePersist
 
     protected void onCreate() {
-        this.fecha = new Date();
+        this.date = new Date();
     }
 
     @ManyToOne
     @JoinColumn(name = "cliente_id", nullable = false)
     @JsonBackReference
-    private UsersEntity cliente;
+    private UsersEntity customer;
 
     @OneToMany(mappedBy = "order")
     @JsonIgnore
     private List<DetailsOrder> detallesPedido = new ArrayList<>();
 
     public Long getIdCliente() {
-        return cliente != null ? cliente.getIdUsuario() : null;
+        return customer != null ? customer.getIdUsuario() : null;
     }
 
 }

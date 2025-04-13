@@ -1,6 +1,6 @@
 package com.cursospringboot.usersservice.Order.Entity;
 
-public enum Estado {
+public enum Status {
     PENDIENTE,
     PREPARANDO,
     ENVIADO,
