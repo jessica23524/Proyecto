@@ -26,9 +26,11 @@ public class OrdersEntity {
     @Column(name = "id_pedido")
     private Long orderId;
 
+    @Column(name = "estado")
     @Enumerated(EnumType.STRING)
     private Status state;
 
+    @Column(name = "metodo_pago")
     @Enumerated(EnumType.STRING)
     private PaymentMethod paymentMethod;
 
@@ -37,7 +39,7 @@ public class OrdersEntity {
     @Column(name = "direccion_envio")
     private String address;
 
-
+    @Column(name = "fecha_pedido")
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
     @PrePersist

@@ -34,4 +34,5 @@ public class DetailsOrder {
     @Column(name = "precio_unitario")
     private Double priceUnit;
 
+
 }

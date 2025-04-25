@@ -1,12 +1,12 @@
 package com.cursospringboot.usersservice.Order.Controller;
 
+import com.cursospringboot.usersservice.Order.DTO.OrderRequestDTO;
+import com.cursospringboot.usersservice.Order.DTO.UpdateStatusDTO;
 import com.cursospringboot.usersservice.Order.Entity.OrdersEntity;
 import com.cursospringboot.usersservice.Order.Services.OrdersServices;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,6 +24,20 @@ public class OrderController {
     @GetMapping("id/{orderId}")
     public List<OrdersEntity> getOrderById(@PathVariable Long orderId) {
         return  ordersService.getOrderByIdPedido(orderId);
+    }
+
+    @PostMapping("/create")
+    public ResponseEntity<OrdersEntity> createOrder(@RequestBody OrderRequestDTO dto) {
+        OrdersEntity order = ordersService.createOrderFromDTO(dto);
+        return ResponseEntity.ok(order);
+    }
+
+    @PutMapping("/status/{id}")
+    public ResponseEntity<OrdersEntity> updateOrderStatus(
+            @PathVariable("id") Long orderId,
+            @RequestBody UpdateStatusDTO statusDTO) {
+        OrdersEntity updatedOrder = ordersService.updateOrderStatus(orderId, statusDTO.getStatus());
+        return ResponseEntity.ok(updatedOrder);
     }
 }
 
