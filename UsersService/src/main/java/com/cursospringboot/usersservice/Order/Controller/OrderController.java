@@ -31,7 +31,7 @@ public class OrderController {
         OrdersEntity order = ordersService.createOrderFromDTO(dto);
         return ResponseEntity.ok(order);
     }
-
+//actualizacion del estado
     @PutMapping("/status/{id}")
     public ResponseEntity<OrdersEntity> updateOrderStatus(
             @PathVariable("id") Long orderId,

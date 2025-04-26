@@ -55,6 +55,7 @@ public class UserController {
         return ResponseEntity.ok(user);
     }
 
+    // ACTUALIZAR USUARIO
     @PatchMapping("/update/{id}")
     public ResponseEntity<UsersEntity> actualizarParcialmente(
             @PathVariable Long id,
