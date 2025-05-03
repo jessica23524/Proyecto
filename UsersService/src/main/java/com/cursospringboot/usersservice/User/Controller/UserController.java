@@ -64,6 +64,15 @@ public class UserController {
         UsersEntity usuarioActualizado = usersService.updateUser(id, camposActualizados);
         return ResponseEntity.ok(usuarioActualizado);
     }
+    // ELIMINAR USUARIO
 
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteUser(@PathVariable Long id) {
+        boolean deleted = usersService.deleteUser(id);
+        if (deleted) {
+            return ResponseEntity.ok("Usuario eliminado exitosamente");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }
-//comentario

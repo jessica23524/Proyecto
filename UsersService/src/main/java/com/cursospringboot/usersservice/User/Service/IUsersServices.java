@@ -13,10 +13,16 @@ public interface IUsersServices {
     UsersEntity getUserByMail(String email);
 
     Optional<UsersEntity> getUserById(long id);
+
     /*  CREAR USUARIO */
     UsersEntity createUser(UsersEntity user);
     /* ACTUALIZAR USUARIO */
     UsersEntity updateUser(Long userId , Map<String, Object> userUpdate);
+
+    /* ELIMINAR USUARIO */
+
+    boolean deleteUser(Long userId);
+
 }
 
 

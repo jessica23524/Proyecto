@@ -81,4 +81,12 @@ public class OrdersServices implements IOrdersServices {
         }
     }
 
+
+    public boolean deleteOrderById(Long orderId) {
+        return ordersRepository.findById(orderId).map(order -> {
+            ordersRepository.delete(order);
+            return true;
+        }).orElse(false);
+    }
+
 }

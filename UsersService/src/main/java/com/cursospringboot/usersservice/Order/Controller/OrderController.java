@@ -39,6 +39,16 @@ public class OrderController {
         OrdersEntity updatedOrder = ordersService.updateOrderStatus(orderId, statusDTO.getStatus());
         return ResponseEntity.ok(updatedOrder);
     }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteOrder(@PathVariable Long id) {
+        boolean deleted = ordersService.deleteOrderById(id);
+        if (deleted) {
+            return ResponseEntity.ok("Orden eliminada exitosamente");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }
 
 

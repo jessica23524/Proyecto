@@ -53,7 +53,7 @@ public class OrdersEntity {
     @JsonBackReference
     private UsersEntity customer;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order" , cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private List<DetailsOrder> detallesPedido = new ArrayList<>();
 

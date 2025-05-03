@@ -96,6 +96,17 @@ public class UsersService implements IUsersServices {
         return null;
     }
 
+    // eliminar USUARIO
+    @Override
+    public boolean deleteUser(Long userId) {
+        Optional<UsersEntity> user = userRepository.findByIdUsuario(userId);
+        if (user.isPresent()) {
+            userRepository.deleteById(userId);
+            return true;
+        }
+        return false;
+    }
+
 }
 
 
